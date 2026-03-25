@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { featuredHotels } from '@/lib/constants/landing';
-import { useGsapFadeUp, useGsapFadeLeft } from '@/hooks/useGsapAnimation';
+import { useGsapFadeUp } from '@/hooks/useGsapAnimation';
 import { ArrowRight, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import MediaDisplay from '../common/mediaDisplay';
@@ -9,10 +9,8 @@ import { CardContent, CardFooter } from '../ui/card';
 
 export default function StepsSection() {
   const titleRef = useGsapFadeUp();
-  const step0Ref = useGsapFadeLeft({ delay: 0 });
-  const step1Ref = useGsapFadeLeft({ delay: 0.15 });
-  const step2Ref = useGsapFadeLeft({ delay: 0.3 });
-
+  
+  
   return (
     <section id="stays" className="py-16 px-8 bg-primary/90">
       {/* Header row */}

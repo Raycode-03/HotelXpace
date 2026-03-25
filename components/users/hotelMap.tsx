@@ -74,7 +74,7 @@ export default function HotelMap({ hotels, selectedHotelId, onSelectHotel, onClo
       });
       map.current.fitBounds(bounds, { padding: 60 });
     }
-  }, [hotels, selectedHotelId]);
+  }, [hotels, onSelectHotel, selectedHotelId]);
 
 
 

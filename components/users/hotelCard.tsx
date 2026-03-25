@@ -3,7 +3,7 @@ import React from 'react';
 import { MapPin, ChevronRight, Star } from 'lucide-react';
 import Image from 'next/image';
 import { footer } from '@/lib/constants/landing';
-
+import MediaDisplay from '../common/mediaDisplay';
 
 
 // --- Hotel Card ---
@@ -20,11 +20,6 @@ interface HotelCardProps {
 
 
 
-function optimizeCloudinaryUrl( url: string ) {
-  if (!url || !url.includes('cloudinary.com')) return url
-  return url.replace('/upload/', '/upload/w_800,q_auto,f_auto/');
-}
-
 export function HotelCard({ category, rating, name, address, price, image, onClick, selected }: HotelCardProps) {
   const message = `Hi, I'm interested in ${name} located at ${address}. Price: ₦${price}/night`;
   const encoded = encodeURIComponent(message);
@@ -39,12 +34,10 @@ export function HotelCard({ category, rating, name, address, price, image, onCli
         }`}
     >
       {/* Image */}
-      <Image
-        src={optimizeCloudinaryUrl(image)}
+      <MediaDisplay
+        image_url={image}
         alt={name}
         className="w-20 h-20 rounded-lg object-cover shrink-0"
-        height={200}
-        width={200}
       />
 
       {/* Info */}

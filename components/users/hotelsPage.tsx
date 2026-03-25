@@ -1,12 +1,9 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import HotelList from './hotelCard';
+import HotelList from './hotelList';
 import HotelMap from './hotelMap';
 import { hotelApi } from '@/lib/api';
-import type { Hotel } from '@/types/hotel';
-import { useNetworkError } from '@/hooks/useNetworkError';
-
 interface HotelsPageProps {
   query: string;
   type: string;

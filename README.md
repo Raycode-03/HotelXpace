@@ -1,11 +1,11 @@
-# Restaurant Ordering App
+# Hotel Ordering App
 
-A QR-based restaurant ordering system built with Next.js and Supabase.
+A QR-based hotel room ordering system built with Next.js and Supabase.
 
 ## Features
 
-- QR code table access
-- Session-based customer flow
+- QR code room access
+- Session-based guest flow
 - Admin and staff roles
 - Menu browsing with filters
 - Background email jobs
@@ -32,7 +32,7 @@ npm install
 3. Add environment variables
 
 Create `.env.local`
-check the rest variables from .env.example
+check the rest of the variables from `.env.example`
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 
