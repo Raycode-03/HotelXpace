@@ -1,6 +1,6 @@
-# Hotel Ordering App
+# Hotel Booking App
 
-A QR-based hotel room ordering system built with Next.js and Supabase.
+A hotel room booking system built with Next.js and Supabase and mapbox showing the  hotels and the locations side by side.
 
 ## Features
 
@@ -14,6 +14,8 @@ A QR-based hotel room ordering system built with Next.js and Supabase.
 ## Tech Stack
 
 - Next.js
+- Nest.js
+- Mapbox
 - Supabase
 - React Query
 - Radix UI

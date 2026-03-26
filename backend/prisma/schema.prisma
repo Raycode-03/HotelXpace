@@ -1,0 +1,161 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Newsletter {
+  id        String    @id @default(dbgenerated("gen_random_uuid()"))
+  email     String    @unique
+  createdAt DateTime? @default(now()) @db.Timestamptz(6)
+}
+model Hotel {
+  id          String   @id @default(cuid())
+  name        String
+  category    String?
+  location    String
+  address     String?
+  price       Int
+  rating      Float
+  description String
+  image       String?
+  phone       String?
+  longitude   Float?
+  latitude    Float?
+  createdAt   DateTime @default(now())
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model cart_items {
+  id               String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  created_at       DateTime       @default(now()) @db.Timestamptz(6)
+  table_session_id String         @db.Uuid
+  menu_item_id     String         @db.Uuid
+  quantity         BigInt
+  menu_items       menu_items     @relation(fields: [menu_item_id], references: [id], onUpdate: NoAction, map: "cart_items_menu_fkey")
+  table_sessions   table_sessions @relation(fields: [table_session_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "cart_items_session_fkey")
+
+  @@unique([table_session_id, menu_item_id], map: "cart_unique_item_per_session")
+  @@index([menu_item_id], map: "idx_cart_items_menu")
+  @@index([table_session_id], map: "idx_cart_items_session")
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model menu_items {
+  id            String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  created_at    DateTime      @default(now()) @db.Timestamptz(6)
+  name          String
+  description   String
+  category      String
+  price         BigInt
+  image_url     String?
+  video_url     String?
+  is_veg        Boolean       @default(false)
+  is_vegan      Boolean       @default(false)
+  is_available  Boolean       @default(true)
+  restaurant_id String        @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  updated_at    DateTime      @default(now()) @db.Timestamp(6)
+  cart_items    cart_items[]
+  restaurant    restaurant    @relation(fields: [restaurant_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  order_items   order_items[]
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model notifications {
+  id                                      String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  staff_id                                String    @db.Uuid
+  type                                    String
+  title                                   String
+  message                                 String?
+  read                                    Boolean?  @default(false)
+  created_at                              DateTime? @default(now()) @db.Timestamptz(6)
+  requester_id                            String?   @db.Uuid
+  staff_notifications_requester_idTostaff staff?    @relation("notifications_requester_idTostaff", fields: [requester_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  staff_notifications_staff_idTostaff     staff     @relation("notifications_staff_idTostaff", fields: [staff_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model order_items {
+  id           String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  created_at   DateTime   @default(now()) @db.Timestamptz(6)
+  order_id     String     @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  menu_item_id String     @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  quantity     BigInt
+  price        BigInt
+  menu_items   menu_items @relation(fields: [menu_item_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  orders       orders     @relation(fields: [order_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model orders {
+  id               String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  created_at       DateTime       @default(now()) @db.Timestamptz(6)
+  table_session_id String         @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  status           String
+  total_amount     BigInt
+  estimated_time   BigInt
+  updated_at       DateTime       @db.Timestamp(6)
+  order_items      order_items[]
+  table_sessions   table_sessions @relation(fields: [table_session_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model restaurant {
+  id               String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  created_at       DateTime     @default(now()) @db.Timestamptz(6)
+  updated_at       DateTime     @default(now()) @db.Timestamp(6)
+  order_code       String
+  accepting_orders Boolean      @default(true)
+  table_count      BigInt?      @default(0)
+  menu_items       menu_items[]
+  staff            staff[]
+  tables           tables[]
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model staff {
+  id                                              String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  created_at                                      DateTime        @default(now()) @db.Timestamptz(6)
+  email                                           String          @unique
+  role                                            String          @default("staff")
+  is_active                                       Boolean         @default(false)
+  restaurant_id                                   String?         @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  updated_at                                      DateTime        @default(now()) @db.Timestamp(6)
+  notifications_notifications_requester_idTostaff notifications[] @relation("notifications_requester_idTostaff")
+  notifications_notifications_staff_idTostaff     notifications[] @relation("notifications_staff_idTostaff")
+  restaurant                                      restaurant?     @relation(fields: [restaurant_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model table_sessions {
+  id            String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  created_at    DateTime     @default(now()) @db.Timestamptz(6)
+  table_id      String       @db.Uuid
+  session_token String       @unique
+  started_at    DateTime     @default(now()) @db.Timestamptz(6)
+  ended_at      DateTime?    @db.Timestamptz(6)
+  last_activity DateTime     @default(now()) @db.Timestamptz(6)
+  expires_at    DateTime     @default(dbgenerated("(now() + '01:00:00'::interval)")) @db.Timestamptz(6)
+  status        String       @default("active")
+  is_active     Boolean      @default(true)
+  cart_items    cart_items[]
+  orders        orders[]
+  tables        tables       @relation(fields: [table_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([is_active, expires_at], map: "idx_table_sessions_active")
+  @@index([session_token], map: "idx_table_sessions_token")
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model tables {
+  id             String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  created_at     DateTime         @default(now()) @db.Timestamptz(6)
+  table_number   BigInt           @unique
+  restaurant_id  String           @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  is_occupied    Boolean?         @default(false)
+  table_sessions table_sessions[]
+  restaurant     restaurant       @relation(fields: [restaurant_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}

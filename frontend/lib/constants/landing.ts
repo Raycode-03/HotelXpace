@@ -1,5 +1,5 @@
 // constants/landing.ts
-import { MapPin, Star, Shield, Zap, Clock, Heart } from 'lucide-react'
+import { MapPin, Star, Shield, Zap, Filter, MessageCircle } from 'lucide-react'
 
 const thisYear = new Date().getFullYear()
 
@@ -54,39 +54,39 @@ export const featuredHotels = {
   ],
 }
 
-export const whyUs= {
-  title: "Why choose HotelXpace",
-  description: "Everything you need to find and book the perfect stay.",
+export const whyUs = {
+  title: "Why Choose HotelXpace",
+  description: "Everything you need to find and book the perfect stay in Nigeria.",
   items: [
     {
       icon: MapPin,
-      title: "Hotels Near You",
-      description: "Find hotels around your location instantly using real-time location data.",
+      title: "Search by Location",
+      description: "Find hotels across Lagos, Abuja, and more by simply searching your destination.",
     },
     {
       icon: Star,
       title: "Top Rated Stays",
-      description: "Browse only highly rated hotels with verified reviews from real guests.",
+      description: "Browse highly rated hotels ordered by guest ratings so you always get the best.",
     },
     {
-      icon: Zap,
-      title: "Instant Results",
-      description: "Search results load in seconds with live data from Google Places.",
+      icon: Filter,
+      title: "Filter Your Way",
+      description: "Narrow results by price range and hotel category to match your budget and preference.",
     },
     {
       icon: Shield,
-      title: "Trusted Listings",
-      description: "All hotels are verified and sourced from Google's trusted database.",
+      title: "Verified Listings",
+      description: "All hotels are real, verified listings with accurate pricing and location data.",
     },
     {
-      icon: Clock,
-      title: "Search History",
-      description: "Your recent searches are saved so you can pick up right where you left off.",
+      icon: MessageCircle,
+      title: "Contact via WhatsApp",
+      description: "Reach out to us instantly through WhatsApp for booking help or enquiries.",
     },
     {
-      icon: Heart,
-      title: "Save Favourites",
-      description: "Bookmark hotels you love and come back to them anytime.",
+      icon: Zap,
+      title: "Fast & Simple",
+      description: "Clean, fast search experience with no clutter — just find your hotel and go.",
     },
   ],
 }

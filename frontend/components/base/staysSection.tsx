@@ -9,16 +9,16 @@ import { CardContent, CardFooter } from '../ui/card';
 
 export default function StepsSection() {
   const titleRef = useGsapFadeUp();
-  
-  
+
+
   return (
     <section id="stays" className="py-16 px-8 bg-primary/90">
       {/* Header row */}
       <div className="max-w-7xl mx-auto flex items-center justify-between mb-8">
         <div ref={titleRef}>
           <h2 className="text-3xl font-bold text-white pb-2 relative w-fit after:absolute after:bottom-0 after:left-0 after:w-1/2 after:h-1 after:bg-gold">
-  {featuredHotels.title}
-</h2>
+            {featuredHotels.title}
+          </h2>
         </div>
         <Link
           href="/hotels"
@@ -37,10 +37,10 @@ export default function StepsSection() {
           >
             {/* Image with rating badge */}
             <div className="relative">
-              <MediaDisplay
-                image_url={menu.image}
+              <img
+                src={menu.image}
                 alt={menu.name}
-                className="h-52 w-full" 
+                className="h-52 w-full"
               />
               <div className="absolute top-3 right-3 flex items-center gap-1 bg-white/90 text-gray-900 text-xs font-semibold px-2 py-1 rounded-md">
                 <span className="text-yellow-500">★</span>
@@ -60,11 +60,11 @@ export default function StepsSection() {
 
             <CardFooter className="flex items-center justify-between p-4 pt-0 mt-auto">
               <p className="text-base font-bold">
-                <span className="text-gold">${menu.price.toLocaleString()}</span>
+                <span className="text-gold">{menu.price}</span>
                 <span className="text-gray-400 text-sm font-normal">/night</span>
               </p>
               <Link
-                href={`/hotels/?search=${menu.name}`}
+                href={`/hotels/?location=${menu.name}`}
                 className="w-9 h-9 rounded-lg bg-[#c59f5952] flex items-center justify-center hover:bg-[#e2a430] transition-colors"
               >
                 <ArrowRight className="w-4 h-4 text-white" />

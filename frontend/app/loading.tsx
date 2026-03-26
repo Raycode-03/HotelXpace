@@ -20,12 +20,12 @@ function Loading() {
       <div className="relative w-60 h-60 flex items-center justify-center">
         {/* Glow */}
         <div className="absolute inset-0 blur-2xl opacity-30">
-          <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 rounded-full animate-pulse" />
+          <div className="w-full h-full bg-gradient-to-br from-blue-500 to-blue-800 rounded-full animate-pulse" />
         </div>
 
         
         <Image
-          src="/logos/savory_icon.png"
+          src="/logos/hotelxpace.svg"
           alt="Loading"
           fill
           unoptimized 
