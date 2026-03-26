@@ -10,11 +10,11 @@ function Page() {
   const [query, setQuery] = useState(searchParams.get('location') || '');
   const type = searchParams.get('type') || '';
   const price = searchParams.get('price') || '';
-
+  const limit = Number(searchParams.get('limit') ) || 20;
   return (
     <>
       <NavbarHotel query={query} setQuery={setQuery} />
-      <HotelsPage query={query} type={type} price={price} />
+      <HotelsPage query={query} type={type} price={price}  limit={limit}/>
     </>
   )
 }
