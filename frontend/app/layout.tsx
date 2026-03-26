@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "HotelXpace | Luxury Hotel Booking",
     description: "Discover and book luxury hotels across Nigeria and beyond.",
-    url: "https://hotelxpace.vercel.app", // update when ready
+    url: "https://hotel-xpace.vercel.app/",
     siteName: "HotelXpace",
     images: [
       {

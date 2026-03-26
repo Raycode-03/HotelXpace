@@ -7,7 +7,9 @@ import StatsSection from './statsSection'
 import Footer from './footer'
 import HowItWorksSection from './howItWorksSection'
 import WhatsAppButton from '@/components/base/whatsappButton';
-function landingPage() {
+import { useWarmBackend } from '@/hooks/useWarmBackend'
+function LandingPage() {
+   useWarmBackend();
   return (
     <>
       <WhatsAppButton />
@@ -22,4 +24,4 @@ function landingPage() {
   )
 }
 
-export default landingPage
+export default LandingPage
