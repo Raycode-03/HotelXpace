@@ -1,20 +1,20 @@
-"use client"
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
+"use client";
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
 
 function Loading() {
   const [progress, setProgress] = useState(0);
-  
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setProgress(prev => {
+      setProgress((prev) => {
         if (prev >= 100) return 0;
         return prev + 3;
       });
     }, 50);
     return () => clearInterval(interval);
   }, []);
-  
+
   return (
     <main className="fixed inset-0 z-50 bg-black flex items-center justify-center">
       <div className="relative w-60 h-60 flex items-center justify-center">
@@ -23,12 +23,11 @@ function Loading() {
           <div className="w-full h-full bg-gradient-to-br from-blue-500 to-blue-800 rounded-full animate-pulse" />
         </div>
 
-        
         <Image
           src="/logos/hotelxpace.svg"
           alt="Loading"
           fill
-          unoptimized 
+          unoptimized
           className="object-contain invert animate-float"
         />
       </div>
