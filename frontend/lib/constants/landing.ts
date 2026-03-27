@@ -138,5 +138,5 @@ export const footer = {
   { href: 'https://yourwebsite.com', type: 'icon', alt: 'Website' },
 ],
   copy: `© ${thisYear} HotelXpace Luxury Stays. All rights reserved.`,
-  whatsapp: "https://wa.me/9065736008",
+  whatsapp: "https://wa.me/09167019229",
 };
