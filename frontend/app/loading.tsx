@@ -20,7 +20,7 @@ function Loading() {
       ".hotel", 
       {opacity:0},
       {
-      duration: 0.8,
+      duration: 0.3,
       scale: 1.2,
       opacity: 1,
        x: -20, 
@@ -31,7 +31,7 @@ function Loading() {
         gsap.fromTo(
       ".xpace",
       { opacity: 0, x: 30 },
-      { opacity: 1, x: 0, duration: 0.5, ease: "power1.inOut" }
+      { opacity: 1, x: 0, duration: 0.3, ease: "power1.inOut" }
     );
     },
   }
