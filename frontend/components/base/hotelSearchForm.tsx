@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { Search, MapPin, Building2, DollarSign } from 'lucide-react'
 
-const locations = ['Lagos', 'Abuja', 'Port Harcourt', 'Ibadan', 'Kano']
+const locations = ['Lagos', 'Abuja', 'Port Harcourt', 'Ibadan', 'Warri']
 const types = ['Hotel', '2-star hotel', '3-star hotel', '4-star hotel', '5-star hotel'];
 const priceRanges = ['₦0 - ₦30,000', '₦30,000 - ₦60,000', '₦60,000 - ₦100,000', '₦100,000+']
 
@@ -84,7 +84,7 @@ export default function HotelSearchForm() {
       <div className="flex items-end">
         <button
           onClick={handleSearch}
-          className="w-full md:w-auto bg-gold hover:bg-[#e2a430] text-white font-semibold px-6 py-2.5 rounded-lg flex items-center gap-2 transition-colors"
+          className="w-full md:w-auto bg-gold hover:bg-[#e2a430] text-white font-semibold px-6 py-2.5 rounded-lg flex items-center gap-2 transition-colors cursor-pointer"
         >
           <Search className="w-4 h-4" />
           Search Hotel
