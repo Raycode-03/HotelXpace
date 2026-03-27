@@ -30,7 +30,7 @@ function NavbarHotel({ query, setQuery }: NavbarHotelProps) {
       {mobileSearchOpen && (
         <div className="md:hidden absolute top-0 left-0 right-0 h-16 flex items-center px-4 z-50 bg-primary/90 shadow-md">
           <SearchBar
-            query={query}
+            query={query?.trim() || ''}
             setQuery={setQuery}
             setShowSearchResults={setShowSearchResults}
             inputRef={searchInputRef}
