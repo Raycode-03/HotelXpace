@@ -20,7 +20,7 @@ function Loading() {
       ".hotel", 
       {opacity:0},
       {
-      duration: 0.3,
+      duration: 0.1,
       scale: 1.2,
       opacity: 1,
        x: -20, 
